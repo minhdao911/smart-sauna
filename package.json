@@ -1,0 +1,28 @@
+{
+  "name": "smartsauna",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minhdao911/smartSauna.git"
+  },
+  "author": "Minh Dao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minhdao911/smartSauna/issues"
+  },
+  "homepage": "https://github.com/minhdao911/smartSauna#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0"
+  }
+}
