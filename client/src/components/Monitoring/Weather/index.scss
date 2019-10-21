@@ -1,0 +1,6 @@
+@import '../../../assets/sass/mixins.scss';
+
+.weather {
+    grid-area: weather;
+    @include background();
+}

@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-import Menu from '../menu';
+import Menu from './components/Menu';
+import Monitoring from './components/Monitoring';
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      message: 'hello'
-    }
   }
 
   render(){
-    const { message } = this.state;
     return (
       <div className="App">
-        <Menu></Menu>
+        <Menu />
+        <Monitoring />
       </div>
     );
   }

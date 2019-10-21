@@ -1,0 +1,6 @@
+@import '../../../assets/sass/mixins.scss';
+
+.noti {
+    grid-area: noti;
+    @include background();
+}

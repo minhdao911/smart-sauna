@@ -1,0 +1,16 @@
+.monitoring {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% auto;
+    grid-template-rows: 200px 50px 450px;
+    grid-template-areas:
+        "roomlist weather"
+        "roomlist noti"
+        "condition noti"
+}
+
+// .monitoring__sidebar {
+//     grid-area: sidebar;
+//     display: flex;
+//     flex-direction: column;
+// }

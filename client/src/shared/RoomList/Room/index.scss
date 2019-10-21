@@ -1,0 +1,24 @@
+@import '../../../assets/sass/mixins.scss';
+
+.room {
+    @include background();
+    width: 160px;
+    padding: 10px;
+    margin-right: 20px;
+    text-align: center;
+    transition: box-shadow .3s;
+
+    img {
+        width: 100%;
+    }
+
+    p {
+        font-size: 1.2em;
+        margin: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+}

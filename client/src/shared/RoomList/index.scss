@@ -1,0 +1,10 @@
+.room-list {
+    grid-area: roomlist;
+}
+
+.room-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
