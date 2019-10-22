@@ -3,8 +3,8 @@
 
 .condition-item {
     @include background();
-    width: 470px;
-    height: 80%;
+    width: 50%;
+    max-height: calc(75px + 250px + 40px);
     text-align: center;
     padding: 10px;
     margin-right: 20px;
@@ -15,7 +15,7 @@
 }
 
 .condition-item-chart {
-    display: block;
+    display: inline-block;
     margin: 10px auto;
     max-width: 80%;
     max-height: 250px;

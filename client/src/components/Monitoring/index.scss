@@ -1,12 +1,20 @@
 .monitoring {
-    width: 100%;
+    width: calc(960px + 400px);
+    height: calc(80% - 65px - 60px);
+    margin: 20px auto;
     display: grid;
-    grid-template-columns: 60% auto;
-    grid-template-rows: 200px 50px 450px;
+    grid-template-columns: auto 30%;
+    grid-template-rows: 200px 50px auto;
     grid-template-areas:
         "roomlist weather"
         "roomlist noti"
         "condition noti"
+}
+
+@media only screen and (max-width: 1400px) {
+    .monitoring {
+        width: 100%;
+    }
 }
 
 // .monitoring__sidebar {
