@@ -1,8 +1,10 @@
+const express = require('express')
 const router = express.Router()
+const { getRoomData } = require('./controllers')
 
 
-router.use('get_room_data')
-router.use('get_report_data')
+router.get('/get_room_data', getRoomData)
+router.get('/get_report_data', getRoomData)
 
 
 module.exports = router;
