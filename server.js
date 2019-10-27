@@ -34,8 +34,5 @@ app.use((error,req,res,next) => {
 });
 
 app.listen(port, () => {
-    setInterval(() => {
-        updateSeriesData()
-    }, 30000)
     console.log('Listening on port ' + port);
 });
