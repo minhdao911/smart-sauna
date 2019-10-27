@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use((req, res, next) => {
-    // res.setHeader('Access-Control-Allow-Credentials', true)
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
       'Access-Control-Allow-Methods',
@@ -34,5 +33,8 @@ app.use((error,req,res,next) => {
 });
 
 app.listen(port, () => {
+    // setInterval(() => {
+    //     updateSeriesData()
+    // }, 30000)
     console.log('Listening on port ' + port);
 });
