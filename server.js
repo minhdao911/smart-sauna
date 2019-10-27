@@ -5,7 +5,7 @@ const port = process.env.PORT || 5000;
 const routes = require('./routes');
 const { updateSeriesData } = require('./utils')
 const initiateAxiosConfig = require('./axiosConfig');
-
+require('dotenv').config()
 
 initiateAxiosConfig();
 app.use(bodyParser.json());
