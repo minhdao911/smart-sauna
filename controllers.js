@@ -16,6 +16,23 @@ const getRoomData = async (req, res, next) => {
   }
 }
 
+const getTotalRooms = async (req,res,next) => {
+  try {
+    const saunaSeriesDataRes = await axios.get(`/api/assetmanagement/v3/assettypes/mpamkdev.SaunaRooms`)
+    res.status(200).json(saunaSeriesDataRes.data.aspects.map(aspect => {
+      return {
+        room: aspect.name
+      }
+    }))
+  } catch (err) {
+    console.log(err)
+    // console.log(err.response.status);
+    // console.log(err.response.data);
+    next(err);
+  }
+}
+
 module.exports = {
-  getRoomData
+  getRoomData,
+  getTotalRooms
 }
