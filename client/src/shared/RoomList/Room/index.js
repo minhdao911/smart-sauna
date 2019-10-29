@@ -7,7 +7,7 @@ export default function Room(props){
     const {name} = props;
     return (
         <div className="room">
-            <img src={roomImg} alt="room image"/>
+            <img src={roomImg} alt="room"/>
             <p>{name}</p>
         </div>
     )

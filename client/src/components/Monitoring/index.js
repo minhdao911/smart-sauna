@@ -1,24 +1,45 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './index.scss';
 
-import sampleData from '../../data.json';
+import { connect } from 'react-redux';
+import { roomsOperations } from '../../redux/rooms';
+
 import RoomList from '../../shared/RoomList';
 import Condition from './Condition';
 import Weather from './Weather';
 import NotiBoard from './NotiBoard';
 
-export default function Monitoring(){
-    const [data, setData] = useState(sampleData);
-    return (
-        <div className="monitoring">
-            <RoomList list={data}/>
-            <Condition data={data[0]}/>
-            {/* <div className="monitoring__sidebar">
+class Monitoring extends Component{
+
+    componentDidMount(){
+        this.props.fetchRoomData();
+    }
+
+    render(){
+        const { rooms, isLoading } = this.props;
+        return (
+            <div className="monitoring">
+                <RoomList list={rooms}/>
+                <Condition data={rooms[0]}/>
                 <Weather />
-                <Notification />
-            </div> */}
-            <Weather />
-            <NotiBoard />
-        </div>
-    )
+                <NotiBoard />
+            </div>
+        )
+    }
 }
+
+const mapStateToProps = ({rooms}) => {
+    const { data, isLoading } = rooms;
+    return {
+      rooms: data,
+      isLoading
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => {
+    const fetchRoomData = () => dispatch(roomsOperations.fetchRoomData());
+
+    return { fetchRoomData };
+  };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Monitoring);

@@ -25,7 +25,7 @@ export default class Weather extends Component {
         return (
             <div className="weather-container">
                 <div className="weather">
-                    <img src={`http://openweathermap.org/img/wn/${weatherIcon}@2x.png`} />
+                    <img src={`http://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt="weather" />
                     <p>{temp}°C</p>
                 </div>
                 <div className="date-and-time">

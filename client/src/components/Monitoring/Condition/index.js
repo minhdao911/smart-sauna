@@ -7,8 +7,8 @@ export default function Condition(props){
     const {data} = props;
     return (
         <div className="condition">
-            <ConditionItem label="Temperature" data={data.temp}/>
-            <ConditionItem label="Humidity" data={data.humid}/>
+            <ConditionItem label="Temperature" data={data ? data.temperature : 0}/>
+            <ConditionItem label="Humidity" data={data ? data.humidity : 0}/>
         </div>
     )
 }
