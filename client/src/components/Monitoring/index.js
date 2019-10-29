@@ -10,17 +10,39 @@ import Weather from './Weather';
 import NotiBoard from './NotiBoard';
 
 class Monitoring extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            chosenRoom: '' 
+        }
+    }
 
     componentDidMount(){
         this.props.fetchRoomData();
     }
 
+    componentDidUpdate(prevProps){
+        const { rooms } = this.props;
+        if(prevProps.rooms !== rooms){
+            this.setState({
+                chosenRoom: rooms[0]
+            })
+        }
+    }
+
+    updateChosenRoom = (newRoom) => {
+        this.setState({
+            chosenRoom: newRoom
+        })
+    }
+
     render(){
         const { rooms, isLoading } = this.props;
+        const { chosenRoom } = this.state;
         return (
             <div className="monitoring">
-                <RoomList list={rooms}/>
-                <Condition data={rooms[0]}/>
+                <RoomList list={rooms} isLoading={isLoading} updateChosenRoom={this.updateChosenRoom} chosenRoom={chosenRoom}/>
+                <Condition data={chosenRoom} isLoading={isLoading}/>
                 <Weather />
                 <NotiBoard />
             </div>

@@ -3,8 +3,7 @@
     height: calc(80% - 65px - 60px);
     margin: 20px auto;
     display: grid;
-    grid-template-columns: auto 30%;
-    grid-template-rows: 200px 50px auto;
+    text-align: center;
     grid-template-areas:
         "roomlist weather"
         "roomlist noti"
@@ -16,9 +15,3 @@
         width: 100%;
     }
 }
-
-// .monitoring__sidebar {
-//     grid-area: sidebar;
-//     display: flex;
-//     flex-direction: column;
-// }

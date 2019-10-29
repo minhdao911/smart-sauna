@@ -30,7 +30,7 @@
         fill: none;
         stroke-width: 2.8;
         stroke-linecap: round;
-        animation: progress 1s ease-out forwards;
+        transition: stroke-dasharray 0.7s ease-out;
     }
 
     &.orange .circle {
@@ -41,12 +41,5 @@
         fill: #666;
         font-size: 0.35em;
         text-anchor: middle;
-    }
-}
-
-
-@keyframes progress {
-    0% {
-      stroke-dasharray: 0 100;
     }
 }
