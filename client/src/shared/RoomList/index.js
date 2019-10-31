@@ -12,9 +12,11 @@ export default function RoomList(props){
         <Spin spinning={isLoading}>
             <div className="room-list">
                 {
+                    list.length > 0 ?
                     list.map((room, index) => {
                         return <Room key={index} room={room} updateChosenRoom={updateChosenRoom} chosenRoom={chosenRoom}/>
-                    })
+                    }) : 
+                    <Room room={{room: "???"}} chosenRoom=""/>
                 }
             </div>
         </Spin>
