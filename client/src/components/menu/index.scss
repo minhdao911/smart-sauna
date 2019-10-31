@@ -12,11 +12,16 @@
 .menu-item {
     font-size: 1.3em;
     margin-right: 30px;
+    color: white;
 
     a {
         display: inline-block;
         color: white;
         text-decoration: none;
+
+        &:hover {
+            color: white;
+        }
 
         &::after {
             content: '';
@@ -28,6 +33,12 @@
         }
     
         &:hover::after {
+            width: 80%;
+        }
+    }
+
+    .active {
+        &::after {
             width: 80%;
         }
     }
