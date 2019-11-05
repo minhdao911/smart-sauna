@@ -1,17 +1,25 @@
 .monitoring {
-    width: calc(960px + 400px);
-    height: calc(80% - 65px - 60px);
-    margin: 20px auto;
-    display: grid;
-    text-align: center;
-    grid-template-areas:
-        "roomlist weather"
-        "roomlist noti"
-        "condition noti"
+    // width: calc(960px + 400px);
+    // // height: calc(80% - 65px - 60px);
+    // margin: 20px auto;
+    // display: grid;
+    // text-align: center;
+    // grid-gap: 20px;
+    // grid-template-areas:
+    //     "roomlist weather"
+    //     "condition noti"
+    //     "condition noti"
+    display: flex;
+    flex-direction: row;
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media only screen and (max-width: 1400px) {
     .monitoring {
-        width: 100%;
+        width: 90%;
     }
 }

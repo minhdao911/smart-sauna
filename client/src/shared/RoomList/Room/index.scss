@@ -1,4 +1,5 @@
 @import '../../../assets/sass/mixins.scss';
+@import '../../../assets/sass/variables.scss';
 
 .room {
     @include background();
@@ -13,7 +14,7 @@
     }
 
     p {
-        font-size: 1.2em;
+        font-size: $normalFontSize;
         margin: 0;
     }
 
@@ -28,5 +29,13 @@
 
     p {
         font-weight: 700;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .room {
+        p {
+            font-size: $smallScreenFontSize;
+        }
     }
 }

@@ -1,3 +1,5 @@
+@import '../../assets/sass/variables.scss';
+
 .menu {
     display: flex;
     flex-direction: row;
@@ -10,7 +12,7 @@
 }
 
 .menu-item {
-    font-size: 1.3em;
+    font-size: calc(#{$normalFontSize} + 0.1em);
     margin-right: 30px;
     color: white;
 
@@ -41,5 +43,18 @@
         &::after {
             width: 80%;
         }
+    }
+}
+
+
+@media only screen and (max-width: 1400px) {
+    .menu-logo {
+        width: 20px;
+        height: 42px;
+    }
+
+    .menu-item {
+        font-size: calc(#{$smallScreenFontSize} + 0.1em);
+        margin-right: 20px;
     }
 }

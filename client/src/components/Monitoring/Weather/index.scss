@@ -4,12 +4,10 @@
     grid-area: weather;
     @include background();
     max-width: 400px;
-    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     padding: 20px;
-    margin-left: 20px;
 
     .weather, .date-and-time {
         text-align: center;

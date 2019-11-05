@@ -13,12 +13,17 @@ class Monitoring extends Component{
     constructor(props){
         super(props);
         this.state = {
-            chosenRoom: '' 
+            chosenRoom: '',
+            intervalId: null,
         }
     }
 
     componentDidMount(){
         this.props.fetchRoomData();
+        const intervalId = setInterval(() => {
+            this.props.fetchRoomData();
+        }, 30000);
+        this.setState({intervalId});
     }
 
     componentDidUpdate(prevProps){
@@ -28,6 +33,10 @@ class Monitoring extends Component{
                 chosenRoom: rooms[0]
             })
         }
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.state.intervalId);
     }
 
     updateChosenRoom = (newRoom) => {
@@ -41,10 +50,14 @@ class Monitoring extends Component{
         const { chosenRoom } = this.state;
         return (
             <div className="monitoring">
-                <RoomList list={rooms} isLoading={isLoading} updateChosenRoom={this.updateChosenRoom} chosenRoom={chosenRoom}/>
-                <Condition data={chosenRoom} isLoading={isLoading}/>
-                <Weather />
-                <NotiBoard />
+                <div>
+                    <RoomList list={rooms} isLoading={isLoading} updateChosenRoom={this.updateChosenRoom} chosenRoom={chosenRoom}/>
+                    <Condition data={chosenRoom} isLoading={isLoading}/>
+                </div>
+                <div>
+                    <Weather />
+                    <NotiBoard />
+                </div>
             </div>
         )
     }

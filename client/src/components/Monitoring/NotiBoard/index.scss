@@ -1,17 +1,24 @@
 @import '../../../assets/sass/mixins.scss';
+@import '../../../assets/sass/variables.scss';
 
 .noti {
     grid-area: noti;
     @include background();
     max-width: 400px;
-    margin-left: 20px;
+    max-height: calc(75px + 250px + 40px);
     text-align: left;
 
     .noti-header {
         width: 100%;
         box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
         padding: 20px;
-        font-size: 1.1em;
+        font-size: $normalFontSize;
         font-weight: 700;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .noti .noti-header {
+        font-size: $smallScreenFontSize;
     }
 }
