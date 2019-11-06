@@ -1,10 +1,13 @@
 .room-list {
-    grid-area: roomlist;
-}
-
-.room-list {
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+/* Small devices (phones, tablets and down) */
+@media only screen and (max-width: 992px) {
+    .room-list {
+        overflow-x: scroll;
+    }
 }

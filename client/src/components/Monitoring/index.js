@@ -50,11 +50,11 @@ class Monitoring extends Component{
         const { chosenRoom } = this.state;
         return (
             <div className="monitoring">
-                <div>
+                <div className="monitoring__div">
                     <RoomList list={rooms} isLoading={isLoading} updateChosenRoom={this.updateChosenRoom} chosenRoom={chosenRoom}/>
                     <Condition data={chosenRoom} isLoading={isLoading}/>
                 </div>
-                <div>
+                <div className="monitoring__div">
                     <Weather />
                     <NotiBoard />
                 </div>

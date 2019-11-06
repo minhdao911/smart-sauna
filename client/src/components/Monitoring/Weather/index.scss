@@ -1,13 +1,12 @@
 @import '../../../assets/sass/mixins.scss';
 
 .weather-container {
-    grid-area: weather;
     @include background();
-    max-width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     padding: 20px;
+    margin-bottom: 20px;
 
     .weather, .date-and-time {
         text-align: center;
@@ -37,4 +36,18 @@
         }
     }
 
+}
+
+/* Small devices (phones, tablets and down) */
+@media only screen and (max-width: 992px) {
+    .weather-container {
+        width: calc(100vw - 40px);
+        margin-top: 20px;
+
+        .date-and-time {
+            h3 {
+                font-size: 1.8em;
+            }
+        }
+    }
 }
