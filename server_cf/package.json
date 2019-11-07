@@ -1,0 +1,19 @@
+{
+  "name": "server_cf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serverCF.js",
+  "scripts": {
+    "server": "nodemon serverCF.js",
+    "start": "node serverCF.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "dotenv": "^8.2.0"
+  }
+}

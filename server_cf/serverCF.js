@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 5000;
-const routes = require('./routes');
-const initiateAxiosConfig = require('./axiosConfig');
+const { updateSeriesData } = require('./utilsCF')
+const initiateAxiosConfig = require('./axiosConfigCF');
 require('dotenv').config()
 
 initiateAxiosConfig();
@@ -20,17 +20,16 @@ app.use((req, res, next) => {
     next();
 });
 
-// routes
-app.use('/',routes)
-
 // Errors handling middleware
 app.use((error,req,res,next) => {
     const status = error.statusCode || 500;
     const message = error.message;
-    const data = error.data;
     res.status(status).json({message:message})
 });
 
 app.listen(port, () => {
+    setInterval(() => {
+        updateSeriesData()
+    }, 30000)
     console.log('Listening on port ' + port);
 });
