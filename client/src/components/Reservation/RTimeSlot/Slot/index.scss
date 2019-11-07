@@ -1,0 +1,25 @@
+@import '../../../../assets/sass/variables.scss';
+
+.slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+
+    .slot-time {
+        span {
+            color: $primaryColor;
+            width: 100px;
+            display: inline-block;
+        }
+    }
+
+    &:hover {
+        font-weight: 700;
+        cursor: pointer;
+    }
+}
+
+.slot.selected {
+    font-weight: 700;
+}

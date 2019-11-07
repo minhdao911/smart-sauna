@@ -1,0 +1,48 @@
+@import '../../../assets/sass/variables.scss';
+
+.reservation-calendar {
+    width: 500px;
+
+    .ant-fullcalendar-selected-day .ant-fullcalendar-value, .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-value {
+        color: #fff;
+        background: $primaryColor;
+        box-shadow: 0 0 0 1px $primaryColor inset;
+    }
+
+    .ant-fullcalendar-today .ant-fullcalendar-value, .ant-fullcalendar-month-panel-current-cell .ant-fullcalendar-value {
+        box-shadow: 0 0 0 1px $primaryColor inset;
+    }
+
+    .ant-fullcalendar-value:hover {
+        background: $primaryLightColor;
+    }
+
+    .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+        color: $primaryColor;
+        border-color: $primaryColor;
+        box-shadow: -1px 0 0 0 $primaryColor;
+    }
+
+    .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+        background-color: $primaryColor !important;
+    }
+
+    .ant-radio-button-wrapper:hover {
+        color: $primaryColor;
+    }
+
+    .ant-select-selection:hover {
+        border-color: $primaryColor;
+    }
+
+    .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active {
+        border-color: $primaryColor;
+        box-shadow: 0 0 0 2px $primaryLightColor;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .reservation-calendar {
+        width: initial;
+    }
+}

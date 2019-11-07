@@ -1,7 +1,26 @@
+@import './assets/sass/variables.scss';
+
 .App {
   width: 80vw;
   height: 100vh;
   margin: 20px auto;
+
+  .ant-btn:hover, .ant-btn:focus {
+    color: $primaryColor;
+    background-color: #fff;
+    border-color: $primaryColor;
+  }
+
+  .ant-btn-primary {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+
+    &:hover, &:focus {
+      color: #fff;
+      background-color: $primaryBoldColor;
+      border-color: $primaryBoldColor;
+    }
+  }
 }
 
 /* Small devices (phones, tablets and down) */

@@ -10,9 +10,10 @@ import {
 
 import Menu from './components/Menu';
 import Monitoring from './components/Monitoring';
+import Reservation from './components/Reservation';
 
 class App extends Component {
-  
+
   render(){
     return (
       <Router>
@@ -24,6 +25,9 @@ class App extends Component {
             </Route>
             <Route path="/monitoring">
               <Monitoring />
+            </Route>
+            <Route path="/reservation">
+              <Reservation />
             </Route>
           </Switch>
         </div>

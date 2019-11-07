@@ -20,6 +20,14 @@
     .monitoring {
         margin: 10px;
         flex-direction: column;
+
+        .monitoring__div {
+            width: 100%;
+        }
+
+        .room-list {
+            padding-left: 230px;
+        }
     }
 }
 

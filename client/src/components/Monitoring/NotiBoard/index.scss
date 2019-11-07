@@ -20,10 +20,17 @@
 @media only screen and (max-width: 992px) {
     .noti {
         min-height: 324px;
-        width: calc(100vw - 40px);
+        width: calc(100vw - 20px);
 
         .noti-header {
             font-size: $smallScreenFontSize;
         }
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .noti {
+        max-width: 400px;
     }
 }

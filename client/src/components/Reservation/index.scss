@@ -1,0 +1,77 @@
+@import '../../assets/sass/mixins.scss';
+@import '../../assets/sass/variables.scss';
+
+.reservation {
+    @include background();
+    padding: 50px;
+    margin-top: 20px;
+    width: 100%;
+    height: calc(100vh - 59px - 100px);
+    display: flex;
+    flex-direction: column;
+
+    .ant-steps-item-process .ant-steps-item-icon {
+        background: $primaryColor;
+        border-color: $primaryColor;
+    }
+
+    .ant-steps-item-finish .ant-steps-item-icon {
+        background-color: #fff;
+        border-color: $primaryColor;
+    }
+
+    .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+        color: $primaryColor;
+    }
+
+    .ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+        background-color: $primaryColor;
+    }
+
+    .steps-content {
+        flex-grow: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .steps-action {
+        flex-grow: 2;
+        text-align: center;
+
+        button {
+            padding: 0 50px;
+        }
+         
+        button:last-child {
+            margin-left: 20px;
+        }
+
+        .ant-btn-primary.submit {
+            background-color: $secondaryColor;
+            border-color: $secondaryColor;
+        }
+    }
+}
+
+/* Small devices (phones, tablets and down) */
+@media only screen and (max-width: 992px) {
+    .reservation {
+        height: initial;
+
+        .steps-content {
+            margin: 20px;
+        }
+
+        .steps-action {
+            button {
+                padding: 0 20px;
+            }
+        }
+
+        .room-list {
+            flex-wrap: wrap;
+        }
+    }
+}
