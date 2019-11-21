@@ -11,6 +11,8 @@ import {
 import Menu from './components/Menu';
 import Monitoring from './components/Monitoring';
 import Reservation from './components/Reservation';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 class App extends Component {
 
@@ -22,6 +24,12 @@ class App extends Component {
           <Switch>
             <Route exact path="/">
               <Redirect to="/monitoring" />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/signup">
+              <Signup />
             </Route>
             <Route path="/monitoring">
               <Monitoring />
