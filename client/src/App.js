@@ -1,47 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.scss';
 
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Redirect
 } from "react-router-dom";
 
-import Menu from './components/Menu';
+import Menu from './shared/Menu';
 import Monitoring from './components/Monitoring';
 import Reservation from './components/Reservation';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import Login from './components/LoginPage';
+import Signup from './components/SignupPage';
 
-class App extends Component {
+import * as ROUTES from './constants/routes';
+import { withAuthentication } from './shared/Session';
 
-  render(){
-    return (
-      <Router>
-        <div className="App">
-          <Menu />
-          <Switch>
-            <Route exact path="/">
-              <Redirect to="/monitoring" />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signup">
-              <Signup />
-            </Route>
-            <Route path="/monitoring">
-              <Monitoring />
-            </Route>
-            <Route path="/reservation">
-              <Reservation />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+const App = () => {
+  return (
+    <Router>
+      <div className="App">
+        <Menu />
+        <Route path={ROUTES.LOG_IN} component={Login} />
+        <Route path={ROUTES.SIGN_UP} component={Signup} />
+        <Route exact path="/" component={Monitoring} />
+        <Route path={ROUTES.MONITORING} component={Monitoring} />
+        <Route path={ROUTES.RESERVATION}>
+          <Reservation />
+        </Route>
+      </div>
+    </Router>
+  );
 }
 
-export default App;
+export default withAuthentication(App);

@@ -1,5 +1,11 @@
 @import '../../assets/sass/variables.scss';
 
+.menu-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .menu {
     display: flex;
     flex-direction: row;

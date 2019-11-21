@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { compose } from 'recompose';
+
 import { Button, message, Icon } from 'antd';
+
 import RSteps from './RSteps';
 import RoomList from '../../shared/RoomList';
+
 import { roomsOperations } from '../../redux/rooms';
+
+import { withAuthorization } from '../../shared/Session';
+import { withFirebase } from '../../shared/Firebase';
 
 import './index.scss'
 import RCalendar from './RCalendar';
 import RTimeSlot from './RTimeSlot';
 
-export default function Reservation(){
+const Reservation = ({authUser, firebase}) => {
     const steps = [
         {
           title: 'Choose room',
@@ -76,14 +83,29 @@ export default function Reservation(){
         if(!chosenTime)
             message.error('Time slot is not chosen');
         else{
-            const reservedData = {
-                room: chosenRoom,
-                date: `${chosenDate.getDate()}/${chosenDate.getMonth()}/${chosenDate.getFullYear()}`,
-                timeslot: chosenTime
+            const date = `${chosenDate.getDate()}/${chosenDate.getMonth()}/${chosenDate.getFullYear()}`;
+            const { room, temperature, humidity } = chosenRoom;
+
+            try{
+                firebase.reservations().add({
+                    date,
+                    timeslot: chosenTime,
+                    room: {
+                        name: room,
+                        temperature,
+                        humidity
+                    },
+                    user: firebase.user(authUser.uid)
+                })
+                .then(() => {
+                    setCurrent(current + 1);
+                    message.success('Processing complete!');
+                }).catch(err => {
+                    message.error(err);
+                })
+            }catch(err){
+                message.error(err);
             }
-            console.log(reservedData);
-            setCurrent(current + 1);
-            message.success('Processing complete!');
         }
     }
 
@@ -135,3 +157,10 @@ export default function Reservation(){
         </div>
     )
 }
+
+const condition = authUser => !!authUser;
+
+export default compose(
+    withFirebase,
+    withAuthorization(condition),
+)(Reservation);

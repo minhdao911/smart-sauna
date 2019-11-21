@@ -1,0 +1,16 @@
+@import '../../../assets/sass/variables.scss';
+
+.user-info {
+    span {
+        margin-left: 5px;
+        color: white;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    .ant-avatar {
+        background: $secondaryColor;
+    }
+}

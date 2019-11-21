@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.scss';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import App from './App';
+import Firebase, { FirebaseContext } from './shared/Firebase';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -13,9 +16,11 @@ import rootReducer from './redux/reducers';
 const store = createStore(rootReducer, compose(applyMiddleware(thunk, logger)));
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
+    <FirebaseContext.Provider value={new Firebase()}>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </FirebaseContext.Provider>
     ,document.getElementById('root')
 );
 

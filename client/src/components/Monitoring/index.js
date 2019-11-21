@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+
 import './index.scss';
 
-import { connect } from 'react-redux';
 import { roomsOperations } from '../../redux/rooms';
 
 import RoomList from '../../shared/RoomList';
 import Condition from './Condition';
 import Weather from './Weather';
 import NotiBoard from './NotiBoard';
+
+import { withAuthorization } from '../../shared/Session';
 
 class Monitoring extends Component{
     constructor(props){
@@ -77,4 +81,8 @@ const mapStateToProps = ({rooms}) => {
     return { fetchRoomData };
   };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Monitoring);
+// export default connect(mapStateToProps, mapDispatchToProps)(Monitoring);
+
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(connect(mapStateToProps, mapDispatchToProps)(Monitoring));
