@@ -11,6 +11,7 @@ import Monitoring from './components/Monitoring';
 import Reservation from './components/Reservation';
 import Login from './components/LoginPage';
 import Signup from './components/SignupPage';
+import Management from './components/Management';
 
 import * as ROUTES from './constants/routes';
 import { withAuthentication } from './shared/Session';
@@ -25,6 +26,7 @@ const App = () => {
         <Route exact path="/" component={Monitoring} />
         <Route path={ROUTES.MONITORING} component={Monitoring} />
         <Route path={ROUTES.RESERVATION}>
+        <Route path={ROUTES.MANAGEMENT} component={Management} />
           <Reservation />
         </Route>
       </div>
