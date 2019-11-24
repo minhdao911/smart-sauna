@@ -25,10 +25,8 @@ const App = () => {
         <Route path={ROUTES.SIGN_UP} component={Signup} />
         <Route exact path="/" component={Monitoring} />
         <Route path={ROUTES.MONITORING} component={Monitoring} />
-        <Route path={ROUTES.RESERVATION}>
+        <Route path={ROUTES.RESERVATION} component={Reservation} />
         <Route path={ROUTES.MANAGEMENT} component={Management} />
-          <Reservation />
-        </Route>
       </div>
     </Router>
   );
