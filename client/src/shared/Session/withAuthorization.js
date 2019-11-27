@@ -26,8 +26,7 @@ const withAuthorization = (condition) => Component => {
         return (
             <AuthUserContext.Consumer>
                 {authUser =>
-                    condition(authUser) ? <Component {...this.props} authUser={authUser}/> : 
-                    <Redirect to={ROUTES.LOG_IN}/>
+                    condition(authUser) && <Component {...this.props} authUser={authUser}/> 
                 }
             </AuthUserContext.Consumer>
         )
