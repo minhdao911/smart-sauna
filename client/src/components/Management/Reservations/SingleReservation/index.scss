@@ -1,0 +1,46 @@
+@import '../../../../assets/sass/mixins.scss';
+
+.reservation-item {
+    @include background();
+    padding: 15px 25px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+
+    .basic-info {
+        margin-bottom: 10px;
+    }
+
+    .condition-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            display: inline;
+            margin-right: 20px;
+
+            .fas {
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+
+.ant-input-number {
+    width: 100%;
+}
+
+.ant-row {
+    p {
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .reservation-item {
+        font-size: 1em;
+        .fas {
+            font-size: 1.1em;
+        }
+    }
+}

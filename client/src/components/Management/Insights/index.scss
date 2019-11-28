@@ -1,0 +1,39 @@
+@import '../../../assets/sass/variables.scss';
+
+.ant-tabs .ant-tabs-top-content {
+    width: 100%;
+    height: 100%;
+    // overflow: auto;
+}
+
+.avg-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span:first-child {
+        font-size: 1.2em;
+        margin-right: 7px;
+        color: #aba9a7;
+    }
+
+    span:last-child {
+        font-size: 1.7em;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .avg-info {
+        span:first-child {
+            font-size: 1em;
+        }
+        span:last-child {
+            font-size: 1.1em;
+        }
+    }
+
+    .ant-tabs-bar.ant-tabs-top-bar {
+        margin-bottom: 10px;
+    }
+}
