@@ -9,6 +9,7 @@ const UserOptions = ({firebase, authUser}) => {
         switch(key){
             case "1": {
                 firebase.doSignOut();
+                break;
             }
             default: 
                 break;

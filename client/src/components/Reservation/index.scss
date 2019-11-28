@@ -4,8 +4,9 @@
 .reservation {
     @include background();
     padding: 50px;
+    margin: auto;
     margin-top: 20px;
-    width: 100%;
+    width: 90%;
     height: calc(100vh - 59px - 100px);
     display: flex;
     flex-direction: column;
@@ -59,8 +60,6 @@
 /* Small devices (phones, tablets and down) */
 @media only screen and (max-width: 992px) {
     .reservation {
-        height: initial;
-
         .steps-action {
             button {
                 padding: 0 20px;
@@ -75,7 +74,6 @@
 
 @media only screen and (min-width: 1280px) {
     .reservation {
-        height: calc(100vh - 59px - 60px);
         padding: 30px;
 
         .steps-content {

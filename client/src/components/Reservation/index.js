@@ -83,12 +83,11 @@ const Reservation = ({authUser, firebase}) => {
         if(!chosenTime)
             message.error('Time slot is not chosen');
         else{
-            const date = `${chosenDate.getDate()}/${chosenDate.getMonth()}/${chosenDate.getFullYear()}`;
             const { room, temperature, humidity } = chosenRoom;
 
             try{
                 firebase.reservations().add({
-                    date,
+                    date: chosenDate,
                     timeslot: chosenTime,
                     room: {
                         name: room,
