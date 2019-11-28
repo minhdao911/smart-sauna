@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Slider, InputNumber, Row, Col } from 'antd';
 
-const AdjustPanel = ({title, value}) => {
+const AdjustPanel = ({field, value, onAdjustValueChange}) => {
     const [inputValue, setInputValue] = useState(value);
 
     const onChange = val => {
         setInputValue(val);
+        onAdjustValueChange(val, field);
     }
 
     return (
         <Row>
-            <p>{title}</p>
+            <p>{field}</p>
             <Col span={20}>
                 <Slider
                     min={0}

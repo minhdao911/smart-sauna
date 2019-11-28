@@ -1,6 +1,6 @@
 import React from 'react';
 import { Spin } from 'antd';
-import SingleHistory from './SingleHistory';
+import HistoryList from './HistoryList';
 
 import './index.scss';
 
@@ -9,9 +9,9 @@ const History = ({reservations}) => {
         <>
             <div className="section-title">History</div>
             <div className="history-container">
-                {reservations.length > 0 ? reservations.map((reservation, index) => {
-                    return <SingleHistory key={index} reservation={reservation} />
-                }) : <Spin/>
+                {reservations.length > 0 ? (
+                    <HistoryList reservations={reservations}/>
+                ) : <Spin/>
                 }
             </div>
         </>

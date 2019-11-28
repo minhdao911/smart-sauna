@@ -11,12 +11,17 @@ import './index.scss';
 const Management = ({authUser, firebase}) => {
   const [reservations, setReservations] = useState([]);
   useEffect(() => {
-    firebase.reservations().get()
+    firebase.reservations().orderBy('date', 'desc').get()
     .then(snapshot => {
-      const userReservations = (snapshot.docs.filter(doc => doc.data().user.id === authUser.uid)).map(res => res.data())
+      const userReservations = (snapshot.docs.filter(doc => doc.data().user.id === authUser.uid)).map(res => {
+        return {
+          id: res.id, 
+          ...res.data()
+        };
+      })
       setReservations(userReservations);
     })
-  });
+  }, []);
 
   return (
     <div className="management-layout">
