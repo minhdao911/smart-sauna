@@ -51,9 +51,24 @@ const createEvent = async (req,res,next) => {
   }
 }
 
+const getEvents = async (req,res,next) => {
+  try {
+    // Get all events from SmartSauna asset
+    const encodedQuery = encodeURI(`${JSON.stringify({ entityId: "1904951b1c6740cdbe77bb0a9d5c86ee" })}`)
+    const eventsRes = await axios.get(`/api/eventmanagement/v3/events?filter=${encodedQuery}`)
+    res.status(200).send(eventsRes.data)
+  } catch (err) {
+    console.log(err)
+    // console.log(err.response.status);
+    // console.log(err.response.data);
+    next(err);
+  }
+}
+
 
 module.exports = {
   getRoomData,
   getTotalRooms,
-  createEvent
+  createEvent,
+  getEvents
 }
