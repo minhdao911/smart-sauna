@@ -34,12 +34,10 @@ const getTotalRooms = async (req,res,next) => {
 
 const createEvent = async (req,res,next) => {
   try {
-    // Assume only error event in this scope
     const payload = {
       entityId: "1904951b1c6740cdbe77bb0a9d5c86ee",
       timestamp : new Date(Date.now()).toISOString(),
       description : req.body.description,
-      severity : 20
     }
     const eventRes = await axios.post(`/api/eventmanagement/v3/events`, payload)
     res.status(201).send(eventRes.data)
