@@ -13,7 +13,6 @@ const RCalendar = ({updateChosenDate, firebase}) => {
         .then(snapshot => {
             const allReservations = snapshot.docs.map(res => res.data());
             setReservations(allReservations);
-            console.log(allReservations);
         })
     }, []);
 
@@ -31,8 +30,8 @@ const RCalendar = ({updateChosenDate, firebase}) => {
     }
 
     const getDateStatus = (num) => {
-        if(num < 7) return 'success';
-        else if(num < 12) return 'warning';
+        if(num < 10) return 'success';
+        else if(num < 14) return 'warning';
         else return 'error';
     }
 

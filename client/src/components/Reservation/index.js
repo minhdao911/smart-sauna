@@ -127,7 +127,11 @@ const Reservation = ({authUser, firebase}) => {
             )}
             {current === 2 && (
                 <div className="steps-content">
-                    <RTimeSlot updateChosenTime={updateChosenTime}/>
+                    <RTimeSlot 
+                        updateChosenTime={updateChosenTime} 
+                        chosenDate={chosenDate}
+                        chosenRoom={chosenRoom}
+                    />
                 </div>
             )}
             {current === 3 && (
