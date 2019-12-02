@@ -2,6 +2,7 @@
 
 .reservation-calendar {
     width: 500px;
+    text-align: center;
 
     .ant-fullcalendar-selected-day .ant-fullcalendar-value, .ant-fullcalendar-month-panel-selected-cell .ant-fullcalendar-value {
         color: #fff;
@@ -38,6 +39,19 @@
     .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active {
         border-color: $primaryColor;
         box-shadow: 0 0 0 2px $primaryLightColor;
+    }
+
+    .ant-fullcalendar-date {
+        position: relative;
+
+        .ant-fullcalendar-content {
+            position: absolute;
+            top: -9px;
+            right: 20px;
+            left: auto;
+            bottom: auto;
+            width: 5px;
+        }
     }
 }
 
