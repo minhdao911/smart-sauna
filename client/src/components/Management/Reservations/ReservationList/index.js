@@ -17,7 +17,8 @@ class ReservationList extends React.Component {
         let list = [];
         const currDate = moment();
         reservations.forEach(r => {
-            if(moment(r.date, "DD/MM/YYYY").isSameOrAfter(currDate)){
+            const t = r.timeslot.split(' - ')[1].split(':');
+            if(moment(r.date, "YYYY/MM/DD").hour(t[0]).minute(t[1]).isSameOrAfter(currDate)){
                 list.push(r);
             }
         })

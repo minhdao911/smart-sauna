@@ -18,7 +18,7 @@ const RCalendar = ({updateChosenDate, firebase}) => {
 
     const dateCellRender = (value) => {
         if(value >= moment().startOf('date') && value <= moment().endOf('month')){
-            let d = reservations.filter(r => value.format("DD/MM/YYYY") === r.date);
+            let d = reservations.filter(r => value.format("YYYY/MM/DD") === r.date);
             if(d.length > 0){
                 return (
                     <Badge status={getDateStatus(d.length)} />
@@ -36,7 +36,7 @@ const RCalendar = ({updateChosenDate, firebase}) => {
     }
 
     const onSelect = (date) => {
-        updateChosenDate(moment(date._d).format("DD/MM/YYYY"));
+        updateChosenDate(moment(date._d).format("YYYY/MM/DD"));
     }
 
     return (

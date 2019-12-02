@@ -15,12 +15,12 @@ const InsightItem = ({data, barKey}) => {
         <>
             <div className="avg-info">
                 <span>Average</span>
-                <span>{avg}°C</span>
+                <span>{(Math.round(avg * 100) / 100).toFixed(2)}°C</span>
             </div>
             <ResponsiveBar
                 data={d}
-                keys={[ barKey ]}
-                indexBy= 'date'
+                keys={[barKey]}
+                indexBy="date"
                 margin={{ top: 10, right: 10, bottom: 120, left: 60 }}
                 padding={0.3}
                 axisLeft={{

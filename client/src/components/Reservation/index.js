@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { compose } from 'recompose';
+import * as moment from 'moment';
 
 import { Button, message, Icon } from 'antd';
 
 import RSteps from './RSteps';
 import RoomList from '../../shared/RoomList';
+import RCalendar from './RCalendar';
+import RTimeSlot from './RTimeSlot';
 
 import { roomsOperations } from '../../redux/rooms';
 
@@ -14,8 +17,6 @@ import { withAuthorization } from '../../shared/Session';
 import { withFirebase } from '../../shared/Firebase';
 
 import './index.scss'
-import RCalendar from './RCalendar';
-import RTimeSlot from './RTimeSlot';
 
 const Reservation = ({authUser, firebase}) => {
     const steps = [
@@ -36,7 +37,7 @@ const Reservation = ({authUser, firebase}) => {
     const dispatch = useDispatch();
     const [current, setCurrent] = useState(0);
     const [chosenRoom, setChosenRoom] = useState('');
-    const [chosenDate, setChosenDate] = useState(new Date());
+    const [chosenDate, setChosenDate] = useState(moment().format("YYYY/MM/DD"));
     const [chosenTime, setChosenTime] = useState('');
 
     useEffect(() => {

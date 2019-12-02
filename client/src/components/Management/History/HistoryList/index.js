@@ -15,7 +15,7 @@ class HistoryList extends React.Component {
         let list = [];
         const currDate = moment();
         reservations.forEach(r => {
-            if(moment(r.date, "DD/MM/YYYY").isBefore(currDate)){
+            if(moment(r.date, "YYYY/MM/DD").isBefore(currDate)){
                 list.push(r);
             }
         })

@@ -1,11 +1,12 @@
-@import '../../../../../assets/sass/mixins.scss';
+@import '../../../../../assets/sass/variables.scss';
 
 .reservation-item {
-    @include background();
     padding: 15px 25px;
     margin-bottom: 20px;
     font-size: 1.2em;
     text-align: left;
+    border: 1px solid $borderColor;
+    border-radius: 10px;
 
     .basic-info {
         margin-bottom: 10px;

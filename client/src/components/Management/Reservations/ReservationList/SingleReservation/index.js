@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Icon, Divider, message } from 'antd';
 import { withFirebase } from '../../../../../shared/Firebase';
 import AdjustPanelItem from './AdjustPanelItem';
+import * as moment from 'moment';
 
 import './index.scss';
 
@@ -39,6 +40,12 @@ const SingleReservation = ({reservation, firebase}) => {
     else setHumidity(newValue);
   }
 
+  const isBtnAvailable = () => {
+    const timeArr = timeslot.split(' - ');
+    const t1 = timeArr[0].split(':')[0];
+    return moment(date, "YYYY/MM/DD").hour(Number(t1)) <= moment().add(10, 'minutes');
+  }
+
   return (
     <div className="reservation-item">
       <div className="basic-info">{`${room.name} ${timeslot} ${date}`}</div>
@@ -53,7 +60,7 @@ const SingleReservation = ({reservation, firebase}) => {
             {isAdjust ? room.humidity : humidity}%
           </p>
         </div>
-        <Button type="primary" onClick={onAdjustBtnClick}>
+        <Button type="primary" onClick={onAdjustBtnClick} disabled={!isBtnAvailable()}>
           {isAdjust ? (
             <span>Save <Icon type="up" /></span>
           ): (
