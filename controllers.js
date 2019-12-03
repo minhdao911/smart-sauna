@@ -54,7 +54,14 @@ const getEvents = async (req,res,next) => {
     // Get all events from SmartSauna asset
     const encodedQuery = encodeURI(`${JSON.stringify({ entityId: "1904951b1c6740cdbe77bb0a9d5c86ee" })}`)
     const eventsRes = await axios.get(`/api/eventmanagement/v3/events?filter=${encodedQuery}`)
-    res.status(200).send(eventsRes.data)
+    const data = eventsRes.data["_embedded"].events.map(event => {
+      return {
+        id: event.id,
+        time: event.timestamp,
+        description: event.description,
+      }
+    })
+    res.status(200).send(data)
   } catch (err) {
     console.log(err)
     // console.log(err.response.status);
