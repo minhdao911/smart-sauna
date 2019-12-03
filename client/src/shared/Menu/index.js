@@ -12,7 +12,7 @@ export default function Menu(){
     return (
         <AuthUserContext.Consumer>
             {authUser => authUser ? (
-                <div className="menu-container">
+            <div className="menu-container">
                 <div className="menu">
                     <div className="menu-item">
                         <img src={logo} alt="logo" className="menu-logo"/>

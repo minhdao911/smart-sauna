@@ -69,14 +69,14 @@
                          "history"
                          "insight";
     grid-row-gap: 30px;
+    grid-template-columns: 100%;
+    grid-template-rows: 30% 30% 40%;
     height: calc(100vh - 59px - 100px);
-    width: calc(100vw - 20px)
   }
 }
 
 @media only screen and (max-width: 1280px) {
   .management-layout {
-    grid-column-gap: 15px;
     grid-row-gap: 15px;
     height: calc(100vh - 59px - 50px);
     .section-title {
