@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import './index.scss';
+import { message } from 'antd';
 import Clock from './Clock';
 
-const APIkey = '3a82723d74d085caf9251c70f3b91146';
+import './index.scss';
+
+const APIkey = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 export default class Weather extends Component {
     constructor(props){
         super(props);
@@ -19,7 +21,12 @@ export default class Weather extends Component {
             console.log(data);
             this.setState({temp: data.main.temp, weatherIcon: data.weather[0].icon});
         })
+        .catch(err => {
+            console.log(err);
+            message.error("Can't get weather information");
+        })
     }
+
     render(){
         const {temp, weatherIcon} = this.state;
         return (
