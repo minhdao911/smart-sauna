@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Button, Icon, Divider, message } from 'antd';
 import { withFirebase } from '../../../../../shared/Firebase';
 import AdjustPanelItem from './AdjustPanelItem';
-import * as moment from 'moment';
 
 import './index.scss';
 
-const SingleReservation = ({reservation, firebase}) => {
+const SingleReservation = ({reservation, cancelReservation, firebase}) => {
   const {date, timeslot, room} = reservation;
 
   const [isAdjust, setIsAdjust] = useState(false);
@@ -40,10 +39,15 @@ const SingleReservation = ({reservation, firebase}) => {
     else setHumidity(newValue);
   }
 
-  const isBtnAvailable = () => {
-    const timeArr = timeslot.split(' - ');
-    const t1 = timeArr[0].split(':')[0];
-    return moment(date, "YYYY/MM/DD").hour(Number(t1)) <= moment().add(10, 'minutes');
+  const onCancelBtnClick = () => {
+    firebase.reservation(reservation.id).delete()
+    .then(res => {
+      cancelReservation(reservation.id);
+      message.success('Reservation cancelled successfully');
+    }).catch(err => {
+      console.log(err);
+      message.error('System error! Unable to cancel reservation');
+    })
   }
 
   return (
@@ -60,13 +64,18 @@ const SingleReservation = ({reservation, firebase}) => {
             {isAdjust ? room.humidity : humidity}%
           </p>
         </div>
-        <Button type="primary" onClick={onAdjustBtnClick} disabled={!isBtnAvailable()}>
-          {isAdjust ? (
-            <span>Save <Icon type="up" /></span>
-          ): (
-            <span>Adjust <Icon type="down" /></span>
-          )}
-        </Button>
+        <div>
+          <Button type="primary" onClick={onAdjustBtnClick}>
+            {isAdjust ? (
+              <span>Save <Icon type="up" /></span>
+            ): (
+              <span>Adjust <Icon type="down" /></span>
+            )}
+          </Button>
+          <Button onClick={onCancelBtnClick}>
+            Cancel
+          </Button>
+        </div>
       </div>
       {
         isAdjust && (

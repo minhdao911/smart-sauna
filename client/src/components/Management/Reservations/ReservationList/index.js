@@ -27,13 +27,23 @@ class ReservationList extends React.Component {
         })
     }
 
+    cancelReservation(id){
+        const { currReservations } = this.state;
+        const index = currReservations.indexOf(currReservations.find(r => r.id === id));
+        if(index > -1){
+            let updatedReservations = currReservations.slice();
+            updatedReservations.splice(index, 1);
+            this.setState({currReservations: updatedReservations});
+        }
+    }
+
     render(){
         const { currReservations } = this.state;
         return (
             <div className="reservations-container">
                 {
                     currReservations.length > 0 && currReservations.map((r, index) => (
-                        <SingleReservation key={index} reservation={r}/>
+                        <SingleReservation key={index} reservation={r} cancelReservation={this.cancelReservation.bind(this)}/>
                     ))
                 }
             </div>
