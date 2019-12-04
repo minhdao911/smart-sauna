@@ -37,7 +37,7 @@
         justify-content: center;
         margin: 20px;
     }
-    
+
     .steps-action {
         flex-grow: 2;
         text-align: center;
@@ -45,7 +45,7 @@
         button {
             padding: 0 50px;
         }
-         
+
         button:last-child {
             margin-left: 20px;
         }
@@ -59,25 +59,40 @@
 
 /* Small devices (phones, tablets and down) */
 @media only screen and (max-width: 992px) {
+
     .reservation {
+        padding: 20px;
+
         .steps-action {
             button {
                 padding: 0 20px;
             }
         }
+        .steps-content::-webkit-scrollbar {
+            display: none;
+        }
 
-        .room-list {
-            flex-wrap: wrap;
+        .room-list::-webkit-scrollbar {
+            display: none;
+        }
+        .steps-content {
+            overflow-x: scroll;
+            flex-direction: row;
+            justify-content: unset;
+            margin: 0;
+            width: 100%;
+            .reservation-calendar {
+                margin: auto;
+            }
+        }
+        .ant-steps-item-title {
+            font-size: 0.9rem;
         }
     }
 }
 
 @media only screen and (min-width: 1280px) {
     .reservation {
-        padding: 30px;
-
-        .steps-content {
-            overflow: auto;
-        }
+        padding: 20px;
     }
 }
