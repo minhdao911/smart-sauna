@@ -39,7 +39,7 @@
             background: white;
             transition: width .3s;
         }
-    
+
         &:hover::after {
             width: 80%;
         }
@@ -62,5 +62,14 @@
     .menu-item {
         font-size: calc(#{$smallScreenFontSize} + 0.1em);
         margin-right: 20px;
+    }
+}
+
+/* Small devices (phones, tablets and down) */
+@media only screen and (max-width: 992px) {
+    .menu-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }
