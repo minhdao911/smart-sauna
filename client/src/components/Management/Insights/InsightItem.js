@@ -5,9 +5,11 @@ const InsightItem = ({data, barKey}) => {
     const d = data.map(r => {
         return {
             [barKey]: r.room[barKey],
-            date: r.date
+            date: `${r.date} ${r.timeslot}`
         }
     });
+
+    console.log(d);
 
     const avg = d.map(r => r[barKey]).reduce((acc, curr) => acc + curr, 0)/d.length;
 
@@ -30,6 +32,10 @@ const InsightItem = ({data, barKey}) => {
                     legend: barKey === 'temperature' ? '°C' : "%",
                     legendPosition: 'middle',
                     legendOffset: -40
+                }}
+                axisBottom={{
+                    tickValues: d.map(dt => dt.date),
+                    format: v => v.split(' ')[0]
                 }}
                 animate={false}
             />

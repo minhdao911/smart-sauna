@@ -73,7 +73,7 @@ const SingleReservation = ({reservation, cancelReservation, firebase}) => {
             )}
           </Button>
           <Button onClick={onCancelBtnClick}>
-            Cancel
+            Cancel Reservation
           </Button>
         </div>
       </div>
