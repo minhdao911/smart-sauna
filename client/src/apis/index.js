@@ -7,8 +7,8 @@ if(process.env.NODE_ENV === 'production'){
 const getRoomData = (room) => `${baseUrl}/get_room_data?room=${room}`;
 const getTotalRooms = () => `${baseUrl}/get_total_rooms`;
 
-const createEvent = (code) => `${baseUrl}/create_event?code=${code}`;
-const getEvents = () => `${baseUrl}/get_events`;
+const createEvent = () => `${baseUrl}/create_event`;
+const getEvents = (code) => `${baseUrl}/get_events?code=${code}`;
 
 const sendNotification = () => `${baseUrl}/send_notification`;
 

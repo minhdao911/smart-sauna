@@ -15,10 +15,11 @@ const receiveNotiDataAction = actions.receiveNotiData;
 const createNotification = (description) => {
     return dispatch => {
         dispatch(sendNotificationAction());
-        fetch(apis.createEvent(CODE), {
+        fetch(apis.createEvent(), {
             method: 'POST',
             body: JSON.stringify({
-                description
+                description,
+                code: CODE
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -47,7 +48,7 @@ const createNotification = (description) => {
 const fetchNotifications = () => {
     return dispatch => {
         dispatch(requestNotiDataAction());
-        fetch(apis.getEvents())
+        fetch(apis.getEvents(CODE))
         .then(res => res.json())
         .then(notifications => {
             dispatch(receiveNotiDataAction(notifications))
