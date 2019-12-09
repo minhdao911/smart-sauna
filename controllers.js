@@ -1,4 +1,5 @@
 const axios = require('axios');
+const fetch = require('node-fetch');
 
 const getRoomData = async (req, res, next) => {
   const room = req.query.room;
@@ -70,10 +71,35 @@ const getEvents = async (req,res,next) => {
   }
 }
 
+const sendNotification = async (req, res, next) => {
+  try {
+    const payload = {
+      to: req.body.receiverToken,
+      notification: {
+          title: 'Smart Sauna Notification',
+          body: req.body.description
+      }
+    }
+    const response = await fetch('https://fcm.googleapis.com/fcm/send', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Authorization': `key=${process.env.FCM_SERVER_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    res.status(200).send(response);
+  }catch(err){
+    console.log(err);
+    next(err);
+  }
+}
+
 
 module.exports = {
   getRoomData,
   getTotalRooms,
   createEvent,
-  getEvents
+  getEvents,
+  sendNotification,
 }

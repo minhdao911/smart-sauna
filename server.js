@@ -4,10 +4,13 @@ const app = express();
 const port = process.env.PORT || 5000;
 const routes = require('./routes');
 const initiateAxiosConfig = require('./axiosConfig');
+const cors = require('cors');
 
 if (process.env.NODE_ENV !== 'PRODUCTION') {
     require('dotenv').config()
 }
+
+app.use(cors());
 
 initiateAxiosConfig();
 app.use(bodyParser.json());
