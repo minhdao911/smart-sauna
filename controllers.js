@@ -39,6 +39,7 @@ const createEvent = async (req,res,next) => {
       entityId: "1904951b1c6740cdbe77bb0a9d5c86ee",
       timestamp : new Date(Date.now()).toISOString(),
       description : req.body.description,
+      code: req.body.code,
     }
     const eventRes = await axios.post(`/api/eventmanagement/v3/events`, payload)
     res.status(201).send(eventRes.data)
@@ -52,14 +53,16 @@ const createEvent = async (req,res,next) => {
 
 const getEvents = async (req,res,next) => {
   try {
+    const eventCode = req.query.code;
     // Get all events from SmartSauna asset
-    const encodedQuery = encodeURI(`${JSON.stringify({ entityId: "1904951b1c6740cdbe77bb0a9d5c86ee" })}`)
+    const encodedQuery = encodeURI(`${JSON.stringify({ entityId: "1904951b1c6740cdbe77bb0a9d5c86ee", code: eventCode })}`)
     const eventsRes = await axios.get(`/api/eventmanagement/v3/events?filter=${encodedQuery}`)
     const data = eventsRes.data["_embedded"] ? eventsRes.data["_embedded"].events.map(event => {
       return {
         id: event.id,
         time: event.timestamp,
         description: event.description,
+        code: event.code,
       }
     }) : [];
     res.status(200).send(data)
