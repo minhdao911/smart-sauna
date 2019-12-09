@@ -1,10 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Modal, Button, Input, Spin } from 'antd';
+import NotiItem from './NotiItem';
 import './index.scss';
 
-export default function Notification(){
+const { TextArea } = Input;
+
+const Notification = ({list, isLoading, onNotiFormSubmit}) => {
+    const [ modalVisible, setModalVisible ] = useState(false);
+    const [ confirmLoading, setConfirmLoading ] = useState(false);
+    const [ notiDesc, setNotiDesc ] = useState('');
+
+    const showModal = () => {
+        setModalVisible(true);
+    };
+
+    const handleSubmit = () => {
+        onNotiFormSubmit(notiDesc);
+        setConfirmLoading(true);
+        setTimeout(() => {
+            setConfirmLoading(false);
+            setModalVisible(false);
+        }, 1000);
+    }
+
+    const handleCancel = () => {
+        setModalVisible(false);
+    };
+
+    const onDescChange = ({target}) => {
+        setNotiDesc(target.value);
+    }
+
     return (
         <div className="noti">
-            <div className="noti-header">Notification</div>
+            <div className="noti-header">
+                <p>Notification</p>
+                <Button type="primary" shape="circle" icon="plus" onClick={showModal}/>
+            </div>
+            {isLoading ? <Spin /> : list.length > 0 && list.map(item => <NotiItem message={item.description}/>)}
+            <Modal
+                title="Notification Form"
+                visible={modalVisible}
+                onOk={handleSubmit}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel}
+                okText="Send"
+                >
+                <p>Description:</p>
+                <TextArea 
+                    rows={4} 
+                    value={notiDesc}
+                    onChange={onDescChange}/>
+            </Modal>
         </div>
     )
 }
+
+export default Notification;
