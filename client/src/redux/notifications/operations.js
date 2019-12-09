@@ -5,7 +5,7 @@ const receiverToken = process.env.NODE_ENV === 'production' ?
 'ciSYixiDUKAZ7tCJCZx27h:APA91bGCNDbFgRhh4fy2EHY_ehfxFgnqLMYekxodH-vkw3w4sj7zrhRvbLH3ThfpetN_oibIPrGrofw0XkE6-qb_5IICDuPrj9wT9LFvDiwYdGkocP9BUdttxmEe8PQvvXG_wY1C4m3W' : 
 'f_KI7GNhd1DFq9l0TfJRsF:APA91bHnBiXcVb55Y_TqiL85LZ3mbrGmY6SdXNYBYPutv6Z-1BfhtcWSwGPuYxg4j138tSYx0y-A79qjZSINZ7yApAprPZ5YQzj5LZSAelhCvrvf2y4Rs4lC0d6ZRCTcjAwGeGmzBHr5';
 
-const CODE = process.env.NODE_ENV === 'production' ? '1' : '2'; 
+const CODE = process.env.NODE_ENV === 'production' ? '123' : '2'; 
 
 const sendNotificationAction = actions.sendNotification;
 const receiveNotificationAction = actions.receiveNotification;
@@ -27,13 +27,15 @@ const createNotification = (description) => {
         })
         .then(res => res.json())
         .then(res => {
-            console.log('event', res);
             fetch(apis.sendNotification(), {
                 method: 'POST',
                 body: JSON.stringify({
                     receiverToken,
                     description
-                })
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
             .then(() => {
                 dispatch(receiveNotificationAction({

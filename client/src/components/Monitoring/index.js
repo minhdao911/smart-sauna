@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as moment from 'moment';
 
 import './index.scss';
 
@@ -13,7 +14,7 @@ import NotiBoard from './NotiBoard';
 
 import { withAuthorization } from '../../shared/Session';
 
-import { notification } from 'antd';
+import { notification, message } from 'antd';
 
 class Monitoring extends Component{
     constructor(props){
@@ -27,16 +28,15 @@ class Monitoring extends Component{
 
     registerPushListener = () =>
     navigator.serviceWorker.addEventListener("message", ({ data }) => {
-        console.log(data);
         const noti = data.notification ? data.notification : data["firebase-messaging-msg-data"].notification;
+        this.props.fetchNotifications();
         notification.open({
             message: noti.title,
             description: noti.body
-        })
+        });
     });
 
     componentDidMount(){
-        console.log('authUser', this.props.authUser);
         const { messaging } = this.props.firebase;
         messaging.requestPermission()
         .then(() => {
@@ -47,7 +47,7 @@ class Monitoring extends Component{
             console.log(token);
         })
         .catch(() => {
-            console.log('Error occured');
+            message.error('Error in getting notification permission');
         });
 
         this.registerPushListener();
@@ -86,7 +86,7 @@ class Monitoring extends Component{
     }
 
     render(){
-        const { rooms, isRoomLoading, notifications, isNotiLoading } = this.props;
+        const { rooms, isRoomLoading, notifications, isNotiLoading, authUser } = this.props;
         const { chosenRoom } = this.state;
         return (
             <div className="monitoring">
@@ -96,7 +96,7 @@ class Monitoring extends Component{
                 </div>
                 <div className="monitoring__div">
                     <Weather />
-                    <NotiBoard list={notifications} isLoading={isNotiLoading} onNotiFormSubmit={this.onNotiFormSubmit}/>
+                    <NotiBoard list={notifications} isLoading={isNotiLoading} onNotiFormSubmit={this.onNotiFormSubmit} isAdmin={authUser.roles.find(r => r === 'ADMIN') ? true : false}/>
                 </div>
             </div>
         )
@@ -119,6 +119,7 @@ const mapStateToProps = ({rooms, notifications}) => {
 
     const fetchNotifications = () => dispatch(notificationsOperations.fetchNotifications());
     const createNotification = (description) => dispatch(notificationsOperations.createNotification(description)); 
+    const receiveNotification = (data) => dispatch(notificationsOperations.receiveNotification(data)); 
 
     return { 
         fetchRoomData,

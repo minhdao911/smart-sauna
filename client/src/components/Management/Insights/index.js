@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tabs, Spin } from 'antd';
 import InsightItem from './InsightItem';
 
@@ -7,6 +7,14 @@ import './index.scss';
 const { TabPane } = Tabs;
 
 const Insights = ({reservations}) => {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+        setIsLoading(false);
+        }, 2000);
+    })
+
     return (
         <>
             <div className="section-title">Insights</div>
@@ -22,7 +30,7 @@ const Insights = ({reservations}) => {
                             <InsightItem data={reservations} barKey="humidity"/>
                         </TabPane>
                     </Tabs>
-                ) : <Spin/>
+                ) : (isLoading && <Spin/>)
             }
         </>
     )

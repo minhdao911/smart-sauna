@@ -18,7 +18,7 @@ const notificationsReducer = (state = INITIAL_STATE, action) => {
             const { notification } = action;
             const oldNotiData = state.notiData.slice();
             return {
-                notiData: [...oldNotiData, notification],
+                notiData: [notification, ...oldNotiData],
                 isNotiLoading: false,
             }
         }

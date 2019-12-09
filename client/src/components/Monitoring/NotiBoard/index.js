@@ -5,9 +5,8 @@ import './index.scss';
 
 const { TextArea } = Input;
 
-const Notification = ({list, isLoading, onNotiFormSubmit}) => {
+const Notification = ({list, isLoading, onNotiFormSubmit, isAdmin}) => {
     const [ modalVisible, setModalVisible ] = useState(false);
-    const [ confirmLoading, setConfirmLoading ] = useState(false);
     const [ notiDesc, setNotiDesc ] = useState('');
 
     const showModal = () => {
@@ -16,11 +15,8 @@ const Notification = ({list, isLoading, onNotiFormSubmit}) => {
 
     const handleSubmit = () => {
         onNotiFormSubmit(notiDesc);
-        setConfirmLoading(true);
-        setTimeout(() => {
-            setConfirmLoading(false);
-            setModalVisible(false);
-        }, 1000);
+        setModalVisible(false);
+        setNotiDesc('');
     }
 
     const handleCancel = () => {
@@ -35,23 +31,24 @@ const Notification = ({list, isLoading, onNotiFormSubmit}) => {
         <div className="noti">
             <div className="noti-header">
                 <p>Notification</p>
-                <Button type="primary" shape="circle" icon="plus" onClick={showModal}/>
+                {isAdmin && <Button type="primary" shape="circle" icon="plus" onClick={showModal}/>}
             </div>
-            {isLoading ? <Spin /> : list.length > 0 && list.map((item, index) => <NotiItem key={index} data={item}/>)}
-            <Modal
-                title="Notification Form"
-                visible={modalVisible}
-                onOk={handleSubmit}
-                confirmLoading={confirmLoading}
-                onCancel={handleCancel}
-                okText="Send"
-                >
-                <p>Description:</p>
-                <TextArea 
-                    rows={4} 
-                    value={notiDesc}
-                    onChange={onDescChange}/>
-            </Modal>
+            <div className="noti-content">
+                {isLoading ? <Spin /> : list.length > 0 && list.map((item, index) => <NotiItem key={index} data={item}/>)}
+                <Modal
+                    title="Notification Form"
+                    visible={modalVisible}
+                    onOk={handleSubmit}
+                    onCancel={handleCancel}
+                    okText="Send"
+                    >
+                    <p>Description:</p>
+                    <TextArea 
+                        rows={4} 
+                        value={notiDesc}
+                        onChange={onDescChange}/>
+                </Modal>
+            </div>
         </div>
     )
 }
