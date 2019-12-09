@@ -33,7 +33,7 @@ const Reservation = ({authUser, firebase}) => {
             title: 'Done',
         },
     ];
-    const rooms = useSelector(state => state.rooms.data);
+    const rooms = useSelector(state => state.rooms.roomData);
     const dispatch = useDispatch();
     const [current, setCurrent] = useState(0);
     const [chosenRoom, setChosenRoom] = useState('');
