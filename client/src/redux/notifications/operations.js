@@ -1,10 +1,11 @@
 import actions from './actions';
 import apis from '../../apis';
 
-const FCMServerToken = process.env.REACT_APP_API_KEY;
 const receiverToken = process.env.NODE_ENV === 'production' ? 
-'' : 
+'ciSYixiDUKAZ7tCJCZx27h:APA91bGCNDbFgRhh4fy2EHY_ehfxFgnqLMYekxodH-vkw3w4sj7zrhRvbLH3ThfpetN_oibIPrGrofw0XkE6-qb_5IICDuPrj9wT9LFvDiwYdGkocP9BUdttxmEe8PQvvXG_wY1C4m3W' : 
 'f_KI7GNhd1DFq9l0TfJRsF:APA91bHnBiXcVb55Y_TqiL85LZ3mbrGmY6SdXNYBYPutv6Z-1BfhtcWSwGPuYxg4j138tSYx0y-A79qjZSINZ7yApAprPZ5YQzj5LZSAelhCvrvf2y4Rs4lC0d6ZRCTcjAwGeGmzBHr5';
+
+const CODE = process.env.NODE_ENV === 'production' ? '1' : '2'; 
 
 const sendNotificationAction = actions.sendNotification;
 const receiveNotificationAction = actions.receiveNotification;
@@ -14,56 +15,31 @@ const receiveNotiDataAction = actions.receiveNotiData;
 const createNotification = (description) => {
     return dispatch => {
         dispatch(sendNotificationAction());
-        // fetch(apis.createEvent(), {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //         description
-        //     }),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // })
-        // .then(res => res.json())
-        // .then(res => {
-        //     dispatch(receiveNotificationAction({description}))
-            // fetch(apis.sendFCM(), {
-            //     body: JSON.stringify({
-            //         to: token,
-            //         notification: {
-            //             description
-            //         }
-            //     }),
-            //     headers: {
-            //         'Authentication': `key=${FCMServerToken}`,
-            //         'Content-Type': 'application/json'
-            //     }
-            // })
-            // .then(() => {
-            //     dispatch(receiveNotificationAction(res))
-            // })
-        // })
-        const headers = new Headers({
-            "Access-Control-Allow-Origin": "*",
-            "Authorization" : `key=${FCMServerToken}`,
-            "Content-Type": "application/json"
-        });
-
-        fetch(apis.sendFCM(), {
+        fetch(apis.createEvent(CODE), {
             method: 'POST',
             body: JSON.stringify({
-                to: receiverToken,
-                notification: {
-                    title: 'Smart Sauna Notification',
-                    body: description
-                }
+                description
             }),
-            headers
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        .then((res) => {
-            dispatch(receiveNotificationAction({description}))
-        })
-        .catch(err => {
-            console.log('fcm error', err);
+        .then(res => res.json())
+        .then(res => {
+            console.log('event', res);
+            fetch(apis.sendNotification(), {
+                method: 'POST',
+                body: JSON.stringify({
+                    receiverToken,
+                    description
+                })
+            })
+            .then(() => {
+                dispatch(receiveNotificationAction({
+                    time: res.timestamp,
+                    description: res.description
+                }))
+            })
         })
     }
 }

@@ -7,15 +7,15 @@ if(process.env.NODE_ENV === 'production'){
 const getRoomData = (room) => `${baseUrl}/get_room_data?room=${room}`;
 const getTotalRooms = () => `${baseUrl}/get_total_rooms`;
 
-const createEvent = () => `${baseUrl}/create_event`;
+const createEvent = (code) => `${baseUrl}/create_event?code=${code}`;
 const getEvents = () => `${baseUrl}/get_events`;
 
-const sendFCM = () => `https://fcm.googleapis.com/fcm/send`;
+const sendNotification = () => `${baseUrl}/send_notification`;
 
 export default {
     getRoomData,
     getTotalRooms,
     createEvent,
     getEvents,
-    sendFCM,
+    sendNotification,
 }

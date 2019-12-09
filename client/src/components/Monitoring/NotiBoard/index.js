@@ -37,7 +37,7 @@ const Notification = ({list, isLoading, onNotiFormSubmit}) => {
                 <p>Notification</p>
                 <Button type="primary" shape="circle" icon="plus" onClick={showModal}/>
             </div>
-            {isLoading ? <Spin /> : list.length > 0 && list.map(item => <NotiItem message={item.description}/>)}
+            {isLoading ? <Spin /> : list.length > 0 && list.map((item, index) => <NotiItem key={index} data={item}/>)}
             <Modal
                 title="Notification Form"
                 visible={modalVisible}
